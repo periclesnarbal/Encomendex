@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import StyledText from "../../components/StyledText";
 import { StackTypes } from "../../routes/routes";
+import ExpoOcrNbkModule from "../../../modules/expo-ocr-nbk/src/ExpoOcrNbkModule";
 
 function Home() {
 
@@ -16,7 +17,8 @@ function Home() {
   return (
     <View style={styles.container}>
       <StyledText
-        title='Toque no botão "Acionar Câmera" e aponte a câmera traseira do seu celular para a parte superior do pacote, onde estão as informações necessárias para o reconhecimento.'
+        // title='Toque no botão "Acionar Câmera" e aponte a câmera traseira do seu celular para a parte superior do pacote, onde estão as informações necessárias para o reconhecimento.'
+        title={ExpoOcrNbkModule.hello()}
         style={styles.text}
       />
       <Image
