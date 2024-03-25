@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, SafeAreaView, TouchableOpacity, Modal } from "react-native";
 import { Camera, CameraCapturedPicture, CameraType } from "expo-camera";
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import PhotoPreview from "../../components/PhotoPreview";
+import { StackTypes } from "../../routes/routes";
 
 function CameraScreen() {
+  const navigation = useNavigation<StackTypes>();
   const camRef = useRef<Camera | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [capturedPhoto, setCapturedPhoto] = useState<CameraCapturedPicture | undefined>(undefined);
@@ -41,11 +44,14 @@ function CameraScreen() {
   };
 
   const handleRetakePress = () => {
+    console.log("Pressionou o botão 'Tirar novamente'")
     closeModal();
   };
 
   const handleContinuePress = () => {
-    console.log('seguir para proxima tela')
+    console.log("Pressionou o botão 'Continuar'")
+    closeModal();
+    navigation.navigate("RegisteredPackage");
   };
 
   return (

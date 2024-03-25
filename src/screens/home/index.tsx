@@ -28,16 +28,16 @@ function Home() {
         style={styles.text}
       />
       <TouchableOpacity style={styles.button} onPress={cameraButtonAction}>
+        <StyledText
+          title="ACIONAR CÂMERA"
+          style={styles.button_text}
+        ></StyledText>
         <View style={styles.icon}>
           <Image
             source={require("../../../assets/images/ic_camera.png")}
             style={styles.camera_icon}
           />
         </View>
-        <StyledText
-          title="ACIONAR CÂMERA"
-          style={styles.button_text}
-        ></StyledText>
       </TouchableOpacity>
     </View>
   );
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   icon: {
-    marginRight: 8,
+    marginLeft: 8,
   },
   camera_icon: {
     width: 24,
