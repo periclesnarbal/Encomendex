@@ -13,8 +13,8 @@ export function hello(): string {
   return ExpoOcrNbkModule.hello();
 }
 
-export async function setValueAsync(value: string) {
-  return await ExpoOcrNbkModule.setValueAsync(value);
+export async function extractTextFromImageBy(url: string) {
+  return await ExpoOcrNbkModule.extractTextFromImageBy(url)
 }
 
 const emitter = new EventEmitter(ExpoOcrNbkModule ?? NativeModulesProxy.ExpoOcrNbk);

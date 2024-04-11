@@ -1,5 +1,5 @@
 export type ChangeEventPayload = {
-  value: string;
+  text: string;
 };
 
 export type ExpoOcrNbkViewProps = {

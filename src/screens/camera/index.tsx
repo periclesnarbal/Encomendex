@@ -7,6 +7,15 @@ import { useNavigation } from "@react-navigation/native";
 import PhotoPreview from "../../components/PhotoPreview";
 import { StackTypes } from "../../routes/routes";
 
+import ExpoOcrNbkModule from "../../../modules/expo-ocr-nbk/src/ExpoOcrNbkModule";
+import { addChangeListener, ChangeEventPayload } from "../../../modules/expo-ocr-nbk";
+
+let imageURL = "https://cdn.gymaholic.co/motivation/images/7226-this-decision-will-get-you-one-step-closer-or-one.jpg"
+
+const subscription = addChangeListener((event: ChangeEventPayload) => {
+  console.log('Evento de mudança:', event.text);
+});
+
 function CameraScreen() {
   const navigation = useNavigation<StackTypes>();
   const camRef = useRef<Camera | null>(null);
@@ -35,6 +44,8 @@ function CameraScreen() {
       const data = await camRef.current?.takePictureAsync();
       setCapturedPhoto(data);
       setOpen(true);
+
+      ExpoOcrNbkModule.extractTextFromImageBy(imageURL)
     }
   }
 
@@ -51,7 +62,8 @@ function CameraScreen() {
   const handleContinuePress = () => {
     console.log("Pressionou o botão 'Continuar'")
     closeModal();
-    navigation.navigate("RegisteredPackage");
+    subscription.remove()
+    // navigation.navigate("RegisteredPackage");
   };
 
   return (
