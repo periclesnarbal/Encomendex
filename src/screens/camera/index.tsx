@@ -6,15 +6,28 @@ import { useNavigation } from "@react-navigation/native";
 
 import PhotoPreview from "../../components/PhotoPreview";
 import { StackTypes } from "../../routes/routes";
-
+import GeminiRequestManager from "../../components/GeminiRequestManager";
 import ExpoOcrNbkModule from "../../../modules/expo-ocr-nbk/src/ExpoOcrNbkModule";
 import { addChangeListener, ChangeEventPayload } from "../../../modules/expo-ocr-nbk";
 
 let imageURL = "https://cdn.gymaholic.co/motivation/images/7226-this-decision-will-get-you-one-step-closer-or-one.jpg"
 
+const geminiRequestManager = new GeminiRequestManager();
+
 const subscription = addChangeListener((event: ChangeEventPayload) => {
   console.log('Evento de mudança:', event.text);
+  AIFormatPackageRequest(event.text)
 });
+
+function AIFormatPackageRequest(prompt: string) {
+  geminiRequestManager.postGeminiRequest(prompt)
+  .then((response) => {
+        console.log('Resposta da predição:', response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+}
 
 function CameraScreen() {
   const navigation = useNavigation<StackTypes>();
